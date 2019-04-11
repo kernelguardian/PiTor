@@ -24,18 +24,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //To check filetype
     if($ext!=$allowed) {
-       // die("Invalid Filetype!!!!");
+       die("Invalid Filetype!!!!");
     }
 
     // Verify file size - 5MB maximum
     $maxsize = 1 * 1024 * 1024;
     if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-    
-    
 
-}
-   
-    
-       
-
+    if(in_array($filetype, $allowed))
+    {
+        move_uploaded_file($_FILES["file"]["tmp_name"], "/" . $filename);
+        echo "Your file was uploaded successfully.";
+    }
+    else { die("FILETYPE ERROR!!!!"); }
 ?>
