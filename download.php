@@ -24,8 +24,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //To check filetype
     if($ext!=$allowed) {
-        die("Invalid Filetype!!!!");
+       // die("Invalid Filetype!!!!");
     }
+
+    // Verify file size - 5MB maximum
+    $maxsize = 1 * 1024 * 1024;
+    if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
     
     
 
