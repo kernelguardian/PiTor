@@ -6,10 +6,12 @@ $magnet=$_REQUEST['magnet'];
 if($magnet===''){
     //calling fileupload fn
         fileupload();
+        
 }
 else {   
     //calling magnet function
 magnetfn();
+
 }
 
 
@@ -55,30 +57,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 function magnetfn(){
 
 
+$magnet=$_REQUEST['magnet'];
+
 //magnet link
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
  $link = mysqli_connect("localhost", "root", "", "db");
 
-// //get time
+//get time
 $date = date('Y/m/d'); //time();
 
 
-// // Check connection
+// Check connection
 if($link === false){
  die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
 
-// // Attempt insert query execution
- $sql = "INSERT INTO magnet_db  VALUES (3, 'magne', $magnet,'2018/7/8')";
-if(mysqli_query($link, $sql)){
-    echo "Records inserted successfully.";
+//Attempt insert query execution
+ $sql_insert = "INSERT INTO magnet_db  VALUES ('magne', '$magnet','$date')";
+if(mysqli_query($link, $sql_insert)){
+    echo "Magnet added";
 } else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    echo "ERROR: Could not able to execute $sql_insert. " . mysqli_error($link);
 }
  
-// // Close connection
-// mysqli_close($link);
+// Close connection
+mysqli_close($link);
 }
 ?>
