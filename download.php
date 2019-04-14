@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+function fileupload(){
 // Check if the form was submitted + File upload scripts
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_FILES["file"]) && $_FILES["file"]["error"] == 0){
@@ -34,7 +38,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $filename);
         echo "Your file was uploaded successfully.";
 }
+}
 
+$magnet=$_REQUEST['magnet'];
+
+
+
+if($magnet===''){
+        //calling magnet function
+    echo "hello";
+}
+else{   //calling fileupload fn
+    fileupload();
+}
 //magnet link
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
