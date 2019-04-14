@@ -1,0 +1,24 @@
+THIS DOCUMENT PROVIDES INFO ABOUT STUFF I TRIED WORKING WITH AND TOOLS I TRIED OUT
+
+
+Magnet URI
+sample magnet uri magnet:?xt=urn:btih:CBEC208F293663118F500412793EC4E65D3B9D0A&dn=Lost.S05.Season.5.720p.5.1Ch.BluRay.ReEnc-DeeJayAhmed&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2fopen.demonii.com%3a1337&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969&tr=udp%3a%2f%2fexodus.desync.com%3a6969
+
+Regular expression
+    https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+
+regex=/magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i
+
+As a result, we're looking for the following in a regex:
+
+The word magnet followed by a semicolon, a questionmark and an "xt=urn:" string
+/magnet:\?xt=urn:
+Any number of strings / numbers up to the next semi-colon (the question's regex fails this)
+[a-z0-9]+:
+From our research above, 32 characters (base32) of interpolated letters and numbers
+[a-z0-9]{32}/i
+The beginning / and the ending / have to be there, because it's a regex, to denote the start and end, and the i at the end (/i) denotes a case-insensitive regex. If we didn't do the /i, we'd be having to check for [a-zA-Z0-9].
+
+The final regex, which actually works, is as follows:
+
+/magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i

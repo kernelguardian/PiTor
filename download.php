@@ -2,6 +2,16 @@
 
 
 
+$magnet=$_REQUEST['magnet'];
+if($magnet===''){
+    //calling fileupload fn
+        fileupload();
+}
+else {   
+    //calling magnet function
+magnetfn();
+}
+
 
 function fileupload(){
 // Check if the form was submitted + File upload scripts
@@ -40,40 +50,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 }
 
-$magnet=$_REQUEST['magnet'];
 
 
+function magnetfn(){
 
-if($magnet===''){
-        //calling magnet function
-    echo "hello";
-}
-else{   //calling fileupload fn
-    fileupload();
-}
+
 //magnet link
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-// $link = mysqli_connect("localhost", "root", "", "db");
+ $link = mysqli_connect("localhost", "root", "", "db");
 
 // //get time
-// $date = date('m/d/Y h:i:s a', time());
+$date = date('Y/m/d'); //time();
+
 
 // // Check connection
-// if($link === false){
-//     die("ERROR: Could not connect. " . mysqli_connect_error());
-// }
+if($link === false){
+ die("ERROR: Could not connect. " . mysqli_connect_error());
+}
 
 
 // // Attempt insert query execution
-// $sql = "INSERT INTO Magnet_DB  VALUES (1, "sampletorrent", 'magnet:?dadafahfe',$date)";
-// if(mysqli_query($link, $sql)){
-//     echo "Records inserted successfully.";
-// } else{
-//     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-// }
+ $sql = "INSERT INTO magnet_db  VALUES (3, 'magne', $magnet,'2018/7/8')";
+if(mysqli_query($link, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
  
 // // Close connection
 // mysqli_close($link);
-
+}
 ?>
