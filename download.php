@@ -6,7 +6,7 @@ $magnet=$_REQUEST['magnet'];
 if($magnet===''){
     //calling fileupload fn
         fileupload();
-        
+
 }
 else {   
     //calling magnet function
@@ -16,6 +16,7 @@ magnetfn();
 
 
 function fileupload(){
+    
 // Check if the form was submitted + File upload scripts
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_FILES["file"]) && $_FILES["file"]["error"] == 0){
