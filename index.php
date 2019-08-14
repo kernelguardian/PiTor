@@ -1,4 +1,4 @@
-<?php
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,5 +40,5 @@
             <p id="demo"></p>
     </body>
     
-</html>
-?>
+    </html>
+
